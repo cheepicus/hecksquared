@@ -1,27 +1,28 @@
-
-Index: trunk/dat/dungeon.def
-===================================================================
---- a/trunk/dat/dungeon.def
-+++ b/trunk/dat/dungeon.def
-@@ -64,4 +64,14 @@
- LEVEL:          "fakewiz1" "F" @ (-6,4)
- LEVEL:          "fakewiz2" "G" @ (-6,4)
-+
+diff -ru nh342code/dat/dungeon.def code/dat/dungeon.def
+--- nh342code/dat/dungeon.def	Wed Sep  3 21:23:09 2003
++++ code/dat/dungeon.def	Tue Oct  7 19:11:44 2003
+@@ -64,6 +64,16 @@
+ LEVEL:		"fakewiz1" "F" @ (-6,4)
+ LEVEL:		"fakewiz2" "G" @ (-6,4)
+ 
 +# Heck extra levels
-+RNDLEVEL:       "heck-a" "H" @ (-19,17) 25 7
-+RNDLEVEL:       "heck-b" "I" @ (2,17) 50 8
-+RNDLEVEL:       "heck-c" "K" @ (-19,17) 75 9
-+RNDLEVEL:       "heck-d" "L" @ (2,17) 9
-+RNDLEVEL:       "heck-e" "M" @ (2,17) 9
-+RNDLEVEL:       "heck-e" "N" @ (-19,17) 9
-+RNDLEVEL:       "heck-e" "P" @ (2,17) 9
-+RNDLEVEL:       "heck-e" "Q" @ (-19,17) 9
-
-Index: trunk/dat/gehennom.des
-===================================================================
---- a/trunk/dat/gehennom.des
-+++ b/trunk/dat/gehennom.des
-@@ -673,2 +673,4363 @@
++RNDLEVEL:	"heck-a" "H" @ (-19,17) 25 7
++RNDLEVEL:	"heck-b" "I" @ (2,17) 50 8
++RNDLEVEL:	"heck-c" "K" @ (-19,17) 75 9
++RNDLEVEL:	"heck-d" "L" @ (2,17) 9
++RNDLEVEL:	"heck-e" "M" @ (2,17) 9
++RNDLEVEL:	"heck-e" "N" @ (-19,17) 9
++RNDLEVEL:	"heck-e" "P" @ (2,17) 9
++RNDLEVEL:	"heck-e" "Q" @ (-19,17) 9
++
+ #
+ #	The Mines of the Gnomes of Zurich.
+ #
+diff -ru nh342code/dat/gehennom.des code/dat/gehennom.des
+--- nh342code/dat/gehennom.des	Wed Sep  3 21:23:09 2003
++++ code/dat/gehennom.des	Tue Oct  7 19:10:27 2003
+@@ -672,3 +672,4364 @@
+ MONSTER:'V',random,random
  MONSTER:'V',random,random
  STAIR:(63,15),up
 +
@@ -4385,3 +4386,202 @@ Index: trunk/dat/gehennom.des
 +MAZEWALK:(2,2),east
 +STAIR:levregion(1,0,79,20),(0,0,0,0),up
 +STAIR:levregion(1,0,79,20),(0,0,0,0),down
+diff -ru nh342code/sys/amiga/Makefile.agc code/sys/amiga/Makefile.agc
+--- nh342code/sys/amiga/Makefile.agc	Wed Sep  3 21:23:10 2003
++++ code/sys/amiga/Makefile.agc	Thu Oct  9 23:22:47 2003
+@@ -302,6 +302,21 @@
+ 	$(SLIB)tower1.lev	$(SLIB)tower2.lev	$(SLIB)tower3.lev \
+ 	$(SLIB)valley.lev	$(SLIB)water.lev	$(SLIB)wizard1.lev \
+ 	$(SLIB)wizard2.lev	$(SLIB)wizard3.lev \
++	$(SLIB)heck-a-1.lev	$(SLIB)heck-a-2.lev	$(SLIB)heck-a-3.lev \
++        $(SLIB)heck-a-4.lev     $(SLIB)heck-a-5.lev     $(SLIB)heck-a-6.lev \
++        $(SLIB)heck-a-7.lev \
++        $(SLIB)heck-b-1.lev     $(SLIB)heck-b-2.lev     $(SLIB)heck-b-3.lev \
++        $(SLIB)heck-b-4.lev     $(SLIB)heck-b-5.lev     $(SLIB)heck-b-6.lev \   
++        $(SLIB)heck-b-7.lev	$(SLIB)heck-b-8.lev \
++        $(SLIB)heck-c-1.lev     $(SLIB)heck-c-2.lev     $(SLIB)heck-c-3.lev \
++        $(SLIB)heck-c-4.lev     $(SLIB)heck-c-5.lev     $(SLIB)heck-c-6.lev \   
++        $(SLIB)heck-c-7.lev     $(SLIB)heck-c-8.lev	$(SLIB)heck-c-9.lev \ 
++        $(SLIB)heck-d-1.lev     $(SLIB)heck-d-2.lev     $(SLIB)heck-d-3.lev \
++        $(SLIB)heck-d-4.lev     $(SLIB)heck-d-5.lev     $(SLIB)heck-d-6.lev \   
++        $(SLIB)heck-d-7.lev     $(SLIB)heck-d-8.lev     $(SLIB)heck-d-9.lev \ 
++        $(SLIB)heck-e-1.lev     $(SLIB)heck-e-2.lev     $(SLIB)heck-e-3.lev \
++        $(SLIB)heck-e-4.lev     $(SLIB)heck-e-5.lev     $(SLIB)heck-e-6.lev \   
++        $(SLIB)heck-e-7.lev 	$(SLIB)heck-e-8.lev	$(SLIB)heck-e-9.lev \ 
+ 	$(XDFILES)
+ 
+ INSTDUNGEONFILES= $(NETHACK)NetHack.cnf $(INSTDUNGEONFILES1)
+diff -ru nh342code/sys/amiga/Makefile.ami code/sys/amiga/Makefile.ami
+--- nh342code/sys/amiga/Makefile.ami	Wed Sep  3 21:23:10 2003
++++ code/sys/amiga/Makefile.ami	Thu Oct  9 23:24:41 2003
+@@ -509,6 +509,21 @@
+ 	$(SLIB)tower1.lev	$(SLIB)tower2.lev	$(SLIB)tower3.lev \
+ 	$(SLIB)valley.lev	$(SLIB)water.lev	$(SLIB)wizard1.lev \
+ 	$(SLIB)wizard2.lev	$(SLIB)wizard3.lev \
++        $(SLIB)heck-a-1.lev     $(SLIB)heck-a-2.lev     $(SLIB)heck-a-3.lev \
++        $(SLIB)heck-a-4.lev     $(SLIB)heck-a-5.lev     $(SLIB)heck-a-6.lev \
++        $(SLIB)heck-a-7.lev \
++        $(SLIB)heck-b-1.lev     $(SLIB)heck-b-2.lev     $(SLIB)heck-b-3.lev \
++        $(SLIB)heck-b-4.lev     $(SLIB)heck-b-5.lev     $(SLIB)heck-b-6.lev \
++        $(SLIB)heck-b-7.lev     $(SLIB)heck-b-8.lev \
++        $(SLIB)heck-c-1.lev     $(SLIB)heck-c-2.lev     $(SLIB)heck-c-3.lev \
++        $(SLIB)heck-c-4.lev     $(SLIB)heck-c-5.lev     $(SLIB)heck-c-6.lev \
++        $(SLIB)heck-c-7.lev     $(SLIB)heck-c-8.lev     $(SLIB)heck-c-9.lev \
++        $(SLIB)heck-d-1.lev     $(SLIB)heck-d-2.lev     $(SLIB)heck-d-3.lev \
++        $(SLIB)heck-d-4.lev     $(SLIB)heck-d-5.lev     $(SLIB)heck-d-6.lev \
++        $(SLIB)heck-d-7.lev     $(SLIB)heck-d-8.lev     $(SLIB)heck-d-9.lev \
++        $(SLIB)heck-e-1.lev     $(SLIB)heck-e-2.lev     $(SLIB)heck-e-3.lev \
++        $(SLIB)heck-e-4.lev     $(SLIB)heck-e-5.lev     $(SLIB)heck-e-6.lev \
++        $(SLIB)heck-e-7.lev     $(SLIB)heck-e-8.lev     $(SLIB)heck-e-9.lev \
+ 	$(XDFILES)
+ 
+ INSTDUNGEONFILES= $(NETHACK)NetHack.cnf $(INSTDUNGEONFILES1)
+diff -ru nh342code/sys/mac/Files.r code/sys/mac/Files.r
+--- nh342code/sys/mac/Files.r	Wed Sep  3 21:23:10 2003
++++ code/sys/mac/Files.r	Thu Oct  9 23:38:42 2003
+@@ -146,3 +146,46 @@
+ read 'File' (1162,"Wiz-goal.lev") ":lib:Wiz-goal.lev";
+ read 'File' (1163,"Wiz-loca.lev") ":lib:Wiz-loca.lev";
+ read 'File' (1164,"Wiz-strt.lev") ":lib:Wiz-strt.lev";
++read 'File' (1165,"heck-a-1.lev") ":lib:heck-a-1.lev";
++read 'File' (1166,"heck-a-2.lev") ":lib:heck-a-2.lev";
++read 'File' (1167,"heck-a-3.lev") ":lib:heck-a-3.lev";
++read 'File' (1168,"heck-a-4.lev") ":lib:heck-a-4.lev";
++read 'File' (1169,"heck-a-5.lev") ":lib:heck-a-5.lev";
++read 'File' (1170,"heck-a-6.lev") ":lib:heck-a-6.lev";
++read 'File' (1171,"heck-a-7.lev") ":lib:heck-a-7.lev";
++read 'File' (1172,"heck-b-1.lev") ":lib:heck-b-1.lev";
++read 'File' (1173,"heck-b-2.lev") ":lib:heck-b-2.lev";
++read 'File' (1174,"heck-b-3.lev") ":lib:heck-b-3.lev";
++read 'File' (1175,"heck-b-4.lev") ":lib:heck-b-4.lev";
++read 'File' (1176,"heck-b-5.lev") ":lib:heck-b-5.lev";
++read 'File' (1177,"heck-b-6.lev") ":lib:heck-b-6.lev";
++read 'File' (1178,"heck-b-7.lev") ":lib:heck-b-7.lev";
++read 'File' (1179,"heck-b-8.lev") ":lib:heck-b-8.lev";
++read 'File' (1180,"heck-c-1.lev") ":lib:heck-c-1.lev";
++read 'File' (1181,"heck-c-2.lev") ":lib:heck-c-2.lev";
++read 'File' (1182,"heck-c-3.lev") ":lib:heck-c-3.lev";
++read 'File' (1183,"heck-c-4.lev") ":lib:heck-c-4.lev";
++read 'File' (1184,"heck-c-5.lev") ":lib:heck-c-5.lev";
++read 'File' (1185,"heck-c-6.lev") ":lib:heck-c-6.lev";
++read 'File' (1186,"heck-c-7.lev") ":lib:heck-c-7.lev";
++read 'File' (1187,"heck-c-8.lev") ":lib:heck-c-8.lev";
++read 'File' (1188,"heck-c-9.lev") ":lib:heck-c-9.lev";
++read 'File' (1189,"heck-d-1.lev") ":lib:heck-d-1.lev";
++read 'File' (1190,"heck-d-2.lev") ":lib:heck-d-2.lev";
++read 'File' (1191,"heck-d-3.lev") ":lib:heck-d-3.lev";
++read 'File' (1192,"heck-d-4.lev") ":lib:heck-d-4.lev";
++read 'File' (1193,"heck-d-5.lev") ":lib:heck-d-5.lev";
++read 'File' (1194,"heck-d-6.lev") ":lib:heck-d-6.lev";
++read 'File' (1195,"heck-d-7.lev") ":lib:heck-d-7.lev";
++read 'File' (1196,"heck-d-8.lev") ":lib:heck-d-8.lev";
++read 'File' (1197,"heck-d-9.lev") ":lib:heck-d-9.lev";
++read 'File' (1198,"heck-e-1.lev") ":lib:heck-e-1.lev";
++read 'File' (1199,"heck-e-2.lev") ":lib:heck-e-2.lev";
++read 'File' (1200,"heck-e-3.lev") ":lib:heck-e-3.lev";
++read 'File' (1201,"heck-e-4.lev") ":lib:heck-e-4.lev";
++read 'File' (1202,"heck-e-5.lev") ":lib:heck-e-5.lev";
++read 'File' (1203,"heck-e-6.lev") ":lib:heck-e-6.lev";
++read 'File' (1204,"heck-e-7.lev") ":lib:heck-e-7.lev";
++read 'File' (1205,"heck-e-8.lev") ":lib:heck-e-8.lev";
++read 'File' (1206,"heck-e-9.lev") ":lib:heck-e-9.lev";
++
+diff -ru nh342code/sys/os2/Makefile.os2 code/sys/os2/Makefile.os2
+--- nh342code/sys/os2/Makefile.os2	Wed Sep  3 21:23:10 2003
++++ code/sys/os2/Makefile.os2	Fri Oct 10 00:01:35 2003
+@@ -524,7 +524,14 @@
+  tower1.lev   tower2.lev   tower3.lev valley.lev   wizard1.lev  wizard2.lev \
+  wizard3.lev  astral.lev   air.lev earth.lev    fire.lev     water.lev \
+  soko1-1.lev  soko1-2.lev  soko2-1.lev  soko2-2.lev  \
+- soko3-1.lev  soko3-2.lev  soko4-1.lev  soko4-2.lev
++ soko3-1.lev  soko3-2.lev  soko4-1.lev  soko4-2.lev \
++ heck-a-1.lev heck-a-2.lev heck-a-3.lev heck-a-4.lev heck-a-5.lev heck-a-6.lev \
++ heck-a-7.lev heck-b-1.lev heck-b-2.lev heck-b-3.lev heck-b-4.lev heck-b-5.lev \
++ heck-b-6.lev heck-b-7.lev heck-b-8.lev heck-c-1.lev heck-c-2.lev heck-c-3.lev \
++ heck-c-4.lev heck-c-5.lev heck-c-6.lev heck-c-7.lev heck-c-8.lev heck-c-9.lev \
++ heck-d-1.lev heck-d-2.lev heck-d-3.lev heck-d-4.lev heck-d-5.lev heck-d-6.lev \
++ heck-d-7.lev heck-d-8.lev heck-d-9.lev heck-e-1.lev heck-e-2.lev heck-e-3.lev \
++ heck-e-4.lev heck-e-5.lev heck-e-6.lev heck-e-7.lev heck-e-8.lev heck-e-9.lev \
+ 
+ QUEST_LEVS = \
+  Arc-goal.lev Arc-fila.lev Arc-filb.lev Arc-loca.lev Arc-strt.lev \
+@@ -1357,12 +1364,14 @@
+ 	$(CP) orcus.lev $(GAMEDIR)
+ 	$(CP) sanctum.lev $(GAMEDIR)
+ 	$(CP) valley.lev $(GAMEDIR)
++	$(CP) heck-?-?.lev $(GAMEDIR)
+ 	$(RM) asmodeus.lev
+ 	$(RM) baalz.lev
+ 	$(RM) juiblex.lev
+ 	$(RM) orcus.lev
+ 	$(RM) sanctum.lev
+ 	$(RM) valley.lev
++	$(RM) heck-?-?.lev
+ 
+ $(GAMEDIR)\wizard1.lev : $(DAT)\yendor.des $(TEMP)\lev_comp.exe
+ 	$(TEMP)\lev_comp $(DAT)\yendor.des
+@@ -1375,7 +1384,6 @@
+ 	$(TEMP)\lev_comp $(DAT)\sokoban.des
+ 	$(CP) soko?-?.lev $(GAMEDIR)
+ 	$(RM) soko?-?.lev
+-
+ 
+ #	Quest dungeons
+ 
+diff -ru nh342code/sys/unix/Makefile.top code/sys/unix/Makefile.top
+--- nh342code/sys/unix/Makefile.top	Wed Sep  3 21:23:10 2003
++++ code/sys/unix/Makefile.top	Fri Oct 10 00:02:42 2003
+@@ -76,7 +76,7 @@
+ SPEC_LEVS = asmodeus.lev baalz.lev bigrm-?.lev castle.lev fakewiz?.lev \
+ 	juiblex.lev knox.lev medusa-?.lev minend-?.lev minefill.lev \
+ 	minetn-?.lev oracle.lev orcus.lev sanctum.lev soko?-?.lev \
+-	tower?.lev valley.lev wizard?.lev \
++	tower?.lev valley.lev wizard?.lev heck-?-?.lev \
+ 	astral.lev air.lev earth.lev fire.lev water.lev
+ QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
+ 
+diff -ru nh342code/sys/vms/install.com code/sys/vms/install.com
+--- nh342code/sys/vms/install.com	Wed Sep  3 21:23:10 2003
++++ code/sys/vms/install.com	Fri Oct 10 00:12:21 2003
+@@ -28,7 +28,7 @@
+ 		   + "JUIBLEX.LEV,KNOX.LEV,MEDUSA-%.LEV,MINEFILL.LEV," -
+ 		   + "MINETN-%.LEV,MINEND-%.LEV,ORACLE.LEV,ORCUS.LEV," -
+ 		   + "SANCTUM.LEV,SOKO%-%.LEV,TOWER%.LEV,VALLEY.LEV," -
+-		   + "WATER.LEV,WIZARD%.LEV"
++		   + "WATER.LEV,WIZARD%.LEV,HECK-%-%.LEV"
+ $	spec_input = "bigroom.des castle.des endgame.des " -
+ 		   + "gehennom.des knox.des medusa.des mines.des " -
+ 		   + "oracle.des sokoban.des tower.des yendor.des"
+diff -ru nh342code/sys/winnt/Makefile.bcc code/sys/winnt/Makefile.bcc
+--- nh342code/sys/winnt/Makefile.bcc	Wed Sep  3 21:23:10 2003
++++ code/sys/winnt/Makefile.bcc	Fri Oct 10 00:17:45 2003
+@@ -1071,6 +1071,7 @@
+ 	if exist $(DAT)\valley.lev	del $(DAT)\valley.lev
+ 	if exist $(DAT)\water.lev	del $(DAT)\water.lev
+ 	if exist $(DAT)\wizard?.lev	del $(DAT)\wizard?.lev
++	if exist $(DAT)\heck-?-?.lev	del $(DAT)\heck-?-?.lev
+ 	if exist $(O)sp_lev.tag	        del $(O)sp_lev.tag
+ 	if exist $(SRC)\monstr.c        del $(SRC)\monstr.c
+ 	if exist $(SRC)\vis_tab.c       del $(SRC)\vis_tab.c
+diff -ru nh342code/sys/winnt/Makefile.gcc code/sys/winnt/Makefile.gcc
+--- nh342code/sys/winnt/Makefile.gcc	Wed Sep  3 21:23:10 2003
++++ code/sys/winnt/Makefile.gcc	Fri Oct 10 00:19:00 2003
+@@ -1030,6 +1030,7 @@
+ 	$(subst /,\,if exist $(DAT)/valley.lev   del $(DAT)/valley.lev)
+ 	$(subst /,\,if exist $(DAT)/water.lev    del $(DAT)/water.lev)
+ 	$(subst /,\,if exist $(DAT)/wizard?.lev  del $(DAT)/wizard?.lev)
++	$(subst /,\,if exist $(DAT)/heck-?-?.lev del $(DAT)/heck-?-?.lev)
+ 	$(subst /,\,if exist $(O)sp_lev.tag     del $(O)sp_lev.tag)
+ 	$(subst /,\,if exist $(SRC)/monstr.c    del $(SRC)/monstr.c)
+ 	$(subst /,\,if exist $(SRC)/vis_tab.c   del $(SRC)/vis_tab.c)
+diff -ru nh342code/sys/winnt/Makefile.msc code/sys/winnt/Makefile.msc
+--- nh342code/sys/winnt/Makefile.msc	Wed Sep  3 21:23:10 2003
++++ code/sys/winnt/Makefile.msc	Fri Oct 10 00:19:56 2003
+@@ -1094,6 +1094,7 @@
+ 	if exist $(DAT)\valley.lev	del $(DAT)\valley.lev
+ 	if exist $(DAT)\water.lev	del $(DAT)\water.lev
+ 	if exist $(DAT)\wizard?.lev	del $(DAT)\wizard?.lev
++	if exist $(DAT)\heck-?-?.lev	del $(DAT)\heck-?-?.lev
+ 	if exist $(O)sp_lev.tag	        del $(O)sp_lev.tag
+ 	if exist $(SRC)\monstr.c        del $(SRC)\monstr.c
+ 	if exist $(SRC)\vis_tab.c       del $(SRC)\vis_tab.c
